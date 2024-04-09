@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AltaColaboradorComponent } from './alta-colaborador.component';
+import { LineaComponent } from './timeline.component';
 
 describe('AltaColaboradorComponent', () => {
-  let component: AltaColaboradorComponent;
-  let fixture: ComponentFixture<AltaColaboradorComponent>;
+  let component: LineaComponent;
+  let fixture: ComponentFixture<LineaComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AltaColaboradorComponent]
+      declarations: [LineaComponent]
     });
-    fixture = TestBed.createComponent(AltaColaboradorComponent);
+    fixture = TestBed.createComponent(LineaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

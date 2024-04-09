@@ -14,6 +14,7 @@ import { MatDialog } from "@angular/material/dialog";
   styleUrls: ['./membresias.component.css']
 })
 export class MembresiasComponent implements OnInit{
+  currentStep: number = 1;
   plan: any;
   membresias: any[] = []; // Declarar el tipo de elID como string o nulo
   elID: any;
@@ -81,10 +82,12 @@ navegarPagina(url: String): void {
 
 altaPlan(): void {
   const dialogRef = this.dialog.open(AltaPlanComponent, {
+    
     data: {
       id: this.elID,
       name: this.gymName
     },
+   
     width: '100%',
     height: '90%',
   });

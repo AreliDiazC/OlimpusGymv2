@@ -3,7 +3,7 @@ import { plan } from "./plan";
 export class sucursal {
     idGimnasio!: number;
     nombreGym!: string;
-    codigoPostal!: string;
+    direccion!: string;
     estado!: string;
     ciudad!: string;
     colonia!: string;

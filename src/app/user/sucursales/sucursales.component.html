@@ -21,9 +21,9 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-5">
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-7">
             <div class="row" style="width: 100%;">  
                 <div class="d-flex justify-content-center" style="text-align: left;">
                     <mat-form-field appearance="outline" class="inputs_css">
@@ -40,55 +40,21 @@
     <div class="content_page">
         <div class="margin_page">
             <div class="row">
-                <div class="col-sm-3">
-                    <!--CONTENIDO - OPCIONES DE FILTRO-->
-                    <div id="filters_container">
-                        <div id="first-section-filters" class="filters">
-                            <h3>Añade filtros</h3>
-                            <p class="txt_filters">Estructura</p>
-
-                            <form [formGroup]="form">
-                                <mat-checkbox class="item-checkbox" formControlName="casilleros" (ngModelChange)="onNombreChange()">Casilleros</mat-checkbox>
-                                <mat-checkbox class="item-checkbox" formControlName="estacionamiento" (ngModelChange)="onNombreChange()">Estacionamiento</mat-checkbox>
-                                <mat-checkbox class="item-checkbox" formControlName="bicicletero" (ngModelChange)="onNombreChange()">Bicicletero</mat-checkbox>
-                                <mat-checkbox class="item-checkbox" formControlName="regaderas" (ngModelChange)="onNombreChange()">Regaderas</mat-checkbox>
-                            </form>
-                            <!--
-                            <mat-checkbox class="item-checkbox" [(ngModel)]="casilleros" (ngModelChange)="onNombreChange($event, 'casilleros')" >Casilleros</mat-checkbox>
-                            <mat-checkbox class="item-checkbox" [(ngModel)]="estacionamiento" (ngModelChange)="onNombreChange($event, 'estacionamiento')" >Estacionamiento</mat-checkbox>
-                            <mat-checkbox class="item-checkbox" [(ngModel)]="bicicletero" (ngModelChange)="onNombreChange($event, 'bicicletero')">Bicicletero</mat-checkbox>
-                            <mat-checkbox class="item-checkbox" [(ngModel)]="energia" (ngModelChange)="onNombreChange($event, 'energia')">Energy</mat-checkbox>
-                                -->
-                            <!--Prueba checkbox -->
-                        </div>
-                    </div>
-                    <!--cierra div filters container-->
-                    <br>
-                    <div class="content_img_left"></div>
-                    <!--cierra div content_img_left-->
-                </div>
-                <!--cierra div h1 filters-->
-
-                <div class="col-sm-9">
+                <div class="col-sm-12">
                     <div *ngFor="let sucursal of displayedGimnasios" >
-
                         <div class="item_x">
                             <div class="content_img_item">
                                 <img src="../../../assets/img/sucs-img/suc1.jpeg" alt="img_sucursal" class="img_item">
                             </div>
-                            <!--cierra div content img item-->
                             <div>
                                 <h3 class="txt_title">{{sucursal.nombreGym}}</h3>
                             </div>
-                            <!--cierra div content title item-->
                             <div>
-                                <p class="txt_addr">{{sucursal.calle + ' ' + sucursal.numInt + ' # ' + sucursal.numExt + ', ' + sucursal.colonia + ' ' + sucursal.codigoPostal + ', ' + sucursal.ciudad + ' ' + sucursal.estado}}</p>
+                                <p class="txt_addr">{{sucursal.direccion}}</p>
                             </div>
-                            <!--cierra div content addr item-->
                             <div class="content_link_item">
-                                <a routerLink="../sucursal"  routerLink="../sucursal/{{sucursal.idGimnasio}}/{{sucursal.nombreGym}}">Ver academia</a>
+                                <a routerLink="../sucursal"  routerLink="../sucursal/{{sucursal.idGimnasio}}/{{sucursal.nombreGym}}">Más detalles</a>
                             </div>
-                           
                             <br>
                             <div class="content_pack_item">
                                 <p class="txt_palnes" style="text-align: center;">Inscríbete</p>
@@ -96,42 +62,27 @@
                             <div class="grid_plan_item">
                                 <div class="h1_plan_item" *ngFor="let membresia of sucursal.membresias.slice(0, 3)">
                                    <p><label class="txt_plan_name">{{membresia.titulo}}</label></p> 
-                                    <!--<label class="txt_old_price">{{"$" + " " + membresia.precio}}</label>-->
                                    <p><label class="txt_new_price">{{"$" + " " + membresia.precio}}</label></p>
                                 </div>
-                                <!--cierra div h1 plan item-->
                             </div>
-                            <!--cierra div grid plan item-->
                             <div class="content_btn_buy">
                                 <button routerLink="/membresias/{{ sucursal.idGimnasio}}/{{sucursal.nombreGym}}" type="submit" class="btn_int" mat-raised-button style="background: #FD9727; color: white;bottom: 30px; left: 50%; transform: translateX(-50%);">
                                     ¡Inscribete ya!</button>
                             </div>
-                            <!--cierre de div content btn buy-->
                         </div>
-                        <!--cierra item x-->
                     </div>
-
-                   
-                    <!--cierra content items-->
                 </div>
-                <!--cierra div h2 items-->
+
+           
                 <div class="row">
-                    <div class="col-sm-3">
-
+                    <div class="col-sm-12">
+                        <div  #loadMoreMarker></div>
+                        <button (click)="loadMoreGimnasios()" class="vermas" style="margin-top: 100px;" *ngIf="hasMoreRecords">Ver más gimnasios</button>
                     </div>
-                    <div class="col-sm-9">
-                        <div class="load-more-container" #loadMoreMarker></div>
-                        <button (click)="loadMoreGimnasios()" class="vermas" *ngIf="hasMoreRecords">Ver más gimnasios</button>
-                    </div>
-
                 </div>
-                
             </div>
-            <!--cierre div grid padre-->
         </div>
-        <!--cierra div margin page-->
     </div>
-    <!--cierra div content page-->
     <br>
     <br>
     <br>

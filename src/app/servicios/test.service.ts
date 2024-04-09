@@ -8,7 +8,6 @@ export class TestService {
 
   public idGym!: string;
   public nameGym!: string;
-  //public tituloMembresia!: string;
 
   public status: boolean = false;
 }

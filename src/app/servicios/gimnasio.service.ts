@@ -8,8 +8,10 @@ import { gimnasio } from './gimnasio';
 })
 export class GimnasioService {
 
-  API: string = 'https://olympus.arvispace.com/gimnasioRoles/configuracion/administrador/gimnasio.php'
-  APISERVICE: string = 'https://olympus.arvispace.com/puntoDeVenta/conf/serviciosGym.php';
+  //API: string = 'https://olympus.arvispace.com/gimnasioRoles/configuracion/administrador/gimnasio.php'
+  API: string = 'https://olympus.arvispace.com/olimpusGym/conf/gym.php'
+  APISERVICE: string = 'https://olympus.arvispace.com/olimpusGym/conf/serviciosGym.php';
+  API2: string = 'https://olympus.arvispace.com/olimpusGym/conf/'
 
   constructor(private clienteHttp:HttpClient) {
   }
@@ -31,14 +33,12 @@ export class GimnasioService {
     return this.clienteHttp.get(this.API+"?consultar="+id);
   }
 
-  borrarSucursal(id:any):Observable<any>{
- 
-    return this.clienteHttp.get(this.API+"?borrar="+id)
-    //this.message = "¡Error al eliminar!, Restricción en la base de datos";
-  }
-
   getServicesForId(id: any): Observable<any> {
     return this.clienteHttp.post(this.APISERVICE, { id: id });
+  }
+
+  consultarPlanes(id:any):Observable<any>{
+    return this.clienteHttp.get(this.API2+"bodega.php?consultarB="+id);
   }
 
 }

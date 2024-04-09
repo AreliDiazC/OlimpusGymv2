@@ -4,7 +4,6 @@
     position: relative;
     padding-bottom: 139px;
     min-height: 100vh;
-    background: #F3F3F3;
 }
 
 .grid{
@@ -56,4 +55,30 @@ fa-icon {
 /**propiedades contenedor redes sociales **/
 .btns_redess {
     padding-bottom: 50px;
+}
+
+
+
+
+
+
+
+.container {
+    margin-top: 20px;
+}
+
+.gym-info {
+    border-right: 2px solid #ccc; /* Borde derecho gris */
+    padding-right: 20px; /* Añadir espacio entre el borde y el contenido */
+}
+
+.form-container {
+    border: 2px solid #ccc; /* Borde alrededor del contenedor del formulario */
+    padding: 20px; /* Espacio interno para separar el borde del contenido */
+}
+
+.border-container {
+    border: 1px solid #dbdbdb; /* Define el borde con un grosor de 2px y color gris */
+    padding: 10px; /* Añade un espacio interno de 10px alrededor del contenido */
+    border-radius: 5px; /* Agrega esquinas redondeadas */
 }

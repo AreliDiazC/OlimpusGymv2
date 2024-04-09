@@ -6,22 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class horarioService {
-  private apiUrl = 'http://localhost/plan/tablaHora.php'; // Cambia la URL a la de tu servicio PHP
-  APIHorario: string = 'https://olympus.arvispace.com/conPrincipal/horario.php'
-
-
+  APIHorario: string = 'https://olympus.arvispace.com/olimpusGym/conf/gym.php'
   constructor(private http: HttpClient) {}
 
-  getValorJSON(jsonPath: string, idGimnasio: number): Observable<any> {
-    const params = {
-      jsonPath: jsonPath,
-      idGimnasio: idGimnasio.toString()
-    };
-
-    return this.http.get<any>(this.apiUrl, { params });
-  }
-
   consultarHorario(id:any):Observable<any>{
-    return this.http.get(this.APIHorario+"?consultar="+id);
+    console.log(id);
+    return this.http.get(this.APIHorario+"?consultarHorario="+id);
   }
 }

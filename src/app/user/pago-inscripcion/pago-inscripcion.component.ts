@@ -99,8 +99,10 @@ export class PagoInscripcionComponent implements OnInit {
 
   ngOnInit(): void {
     this.initConfig();
+    console.log(this.correo, "correooooo")
     this.payInscripcion.consultarDataPago(this.correo).subscribe(respuesta =>{console.log(respuesta)
     this.responseData=respuesta;
+    console.log(this.responseData, "responseData")
     //console.log(this.responseData.titulo) 
     });
   }
@@ -173,15 +175,20 @@ export class PagoInscripcionComponent implements OnInit {
   }
 
   confirPagEfectivo(): any {
-    this.idClient=this.responseData.ID_Cliente;
-    console.log(this.idClient);
+    
 
-    if(this.idClient){
+    const form = {
+      pre_total: this.responseData.precio,
+      id_cliente: this.responseData.clave,
+      id_DetMembresia: this.responseData.idDetMem
+    }
 
-      this.payInscripcion.idPagoSucursal(this.idClient).subscribe((resultado)=> {
+    console.log(form, "form");
+
+      this.payInscripcion.idPagoSucursal(form).subscribe((resultado)=> {
         console.log(resultado.msg);
         this.dialog.open(MensajeEmergentesComponent, {
-          data: `A partir de hoy puede pasar a pagar su membresia en ${this.responseData.nombreGym}`,
+          data: `A partir de hoy puede pasar a pagar su membresia en su sucursal`,
         })
         .afterClosed()
         .subscribe((cerrarDialogo: Boolean) => {
@@ -192,7 +199,7 @@ export class PagoInscripcionComponent implements OnInit {
           }
         });
       });
-    }
+    
   }
 /*
   componentRecibo(items, amount): void {

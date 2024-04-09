@@ -1,0 +1,45 @@
+.timeline {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+ /* .timeline::before {
+    content: '';
+    position: absolute;
+    top: 600%;
+    left: 0;
+    right: 0;
+    height: 2px; 
+    background-color: #f70000; 
+    z-index: -1; 
+  }*/
+  
+  .step-item {
+    position: relative;
+    z-index: 1; /* Asegura que los círculos estén sobre la línea */
+    flex: 1;
+    text-align: center;
+  }
+  
+  .step-marker {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    background-color: #ccc;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 0 auto 5px;
+  }
+  
+  .step-text {
+    font-size: 14px;
+  }
+  
+  .step-item.active .step-marker {
+    background-color: #007bff;
+  }
+  
