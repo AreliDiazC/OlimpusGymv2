@@ -44,14 +44,5 @@ export class HorariosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const observables = this.jsonPaths.map(jsonPath => this.HorarioService.getValorJSON(jsonPath, this.idGimnasio));
-    console.log("ob"+observables);
-
-    forkJoin(observables).subscribe(dataArray => {
-      dataArray.forEach((data, index) => {
-        this.valorJSON[this.jsonPaths[index]] = data.ValorJSON;
-     
-      });
-    });
   }
 }

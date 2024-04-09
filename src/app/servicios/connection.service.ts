@@ -9,7 +9,7 @@ import { sucursal } from './sucursal';
 })
 export class ConnectionService {
   Api: String = 'http://localhost/olimpus-gym/';
-  Api_server: String = 'https://olympus.arvispace.com/conPrincipal/filtroSucursales.php';
+  Api_server: String = 'https://olympus.arvispace.com/olimpusGym/conf/mem.php';
 
   constructor(private http: HttpClient){}
 
@@ -41,7 +41,7 @@ export class ConnectionService {
           const s = new sucursal();
           s.idGimnasio = item.idGimnasio;
           s.nombreGym = item.nombreGym;
-          s.codigoPostal = item.codigoPostal;
+          s.direccion = item.direccion;
           s.estado = item.estado;
           s.ciudad = item.ciudad;
           s.colonia = item.colonia;

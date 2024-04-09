@@ -19,7 +19,7 @@ export class SucursalesComponent implements OnInit {
   form: FormGroup;
   @ViewChild('loadMoreMarker', { read: ElementRef }) loadMoreMarker: ElementRef | null = null;
   sucursales: sucursal[] = [];
-  membresias: plan[] = [];
+  membresias: any[] = [];
   currentPage = 1;
   gimnasiosPerPage = 4;
   displayedGimnasios: sucursal[] = [];
@@ -52,7 +52,6 @@ export class SucursalesComponent implements OnInit {
 
   onNombreChange(){
 
-     
     this.http.filtrarSuc(this.form.value).subscribe({
       next: (resultData) => {
       
@@ -61,6 +60,7 @@ export class SucursalesComponent implements OnInit {
 
         this.http.filtrarMem(this.form.value).subscribe((membresias: Object) => {
           this.sucursales.forEach((sucursal) => {
+            console.log(sucursal, "sucursal");
             sucursal.membresias = (membresias as plan[]).filter((membresia) => membresia.Gimnasio_idGimnasio === sucursal.idGimnasio);
           });
         });
@@ -80,11 +80,12 @@ export class SucursalesComponent implements OnInit {
   ngOnInit(): void {
     this.sucursalService.getSucursales().subscribe((data) => {
       this.sucursales = data; // Asignamos los datos de las sucursales a la propiedad sucursales
+      console.log(data, "datadatadatadatadatadatadatadatadatadatadatadata");
       this.displayedGimnasios = this.sucursales.slice(0, this.gimnasiosPerPage);
 
       this.planService.obternerPlan().subscribe((membresias: Object) => {
-        // Mapea las membresías a los gimnasios correspondientes utilizando el ID de gimnasio
         this.sucursales.forEach((sucursal) => {
+          console.log(sucursal, "sucrusaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaal");
           sucursal.membresias = (membresias as plan[]).filter((membresia) => membresia.Gimnasio_idGimnasio === sucursal.idGimnasio);
         });
       });
@@ -128,11 +129,7 @@ export class SucursalesComponent implements OnInit {
     const criterioBusqueda = this.palabraClave.toLowerCase();
     return (
       sucursal.nombreGym.toLowerCase().includes(criterioBusqueda) ||
-      sucursal.calle.toLowerCase().includes(criterioBusqueda) ||
-      sucursal.estado.toLowerCase().includes(criterioBusqueda) ||
-      sucursal.colonia.toLowerCase().includes(criterioBusqueda) ||
-      sucursal.ciudad.toLowerCase().includes(criterioBusqueda) ||
-      // Agrega más campos según sea necesario
+      sucursal.direccion.toLowerCase().includes(criterioBusqueda) ||
       false
     );
   }

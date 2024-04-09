@@ -8,7 +8,7 @@ import { plan } from './plan';
 })
 export class PlanService {
 
-  API: string = 'https://olympus.arvispace.com/conPrincipal/Membresia.php';
+  API: string = 'https://olympus.arvispace.com/olimpusGym/conf/membresias.php';
   apiProducts: string = 'https://olympus.arvispace.com/Products/products.php';
   API3: string = "https://olympus.arvispace.com/conPrincipal/servicesMembresia.php";
 

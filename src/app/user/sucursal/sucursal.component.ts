@@ -62,7 +62,6 @@ export class SucursalComponent implements OnInit{
     this.consultarHorario();
     this.consultarGym();
     this.planService.obternerPlan().subscribe(respuesta=>{
- 
       this.plan=respuesta;
       });
   }
@@ -74,18 +73,20 @@ export class SucursalComponent implements OnInit{
         if (this.datosGym.length > 0) {
           const primerGym = this.datosGym[0];
           const nombreDelGym = primerGym.nombreGym;
-
         }
       }
     
     )
   }
+
+  
   
   consultarHorario() {
+    console.log(this.elID, "this.elID");
     this.HorarioService.consultarHorario(this.elID).subscribe(
       (data) => {
+        console.log(data, "data");
         this.datosHorario = data;  
-
       },
       (error) => {
         this.message = "Horario no disponible";

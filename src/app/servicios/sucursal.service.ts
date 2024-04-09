@@ -8,7 +8,7 @@ import { sucursal } from './sucursal';
   providedIn: 'root'
 })
 export class SucursalService {
-  API: string = 'https://olympus.arvispace.com/conPrincipal/gimnasio.php';
+  API: string = 'https://olympus.arvispace.com/olimpusGym/conf/gym.php';
 
   constructor(private http: HttpClient) {}
 
@@ -16,24 +16,12 @@ export class SucursalService {
     return this.http.get(this.API).pipe(
       map((data: any) =>
         data.map((item: any) => {
+          console.log(data, "data");
           const s = new sucursal();
-          s.idGimnasio = item.idGimnasio;
-          s.nombreGym = item.nombreGym;
-          s.codigoPostal = item.codigoPostal;
-          s.estado = item.estado;
-          s.ciudad = item.ciudad;
-          s.colonia = item.colonia;
-          s.calle = item.calle;
-          s.numExt = item.numExt;
-          s.numInt = item.numInt;
-          s.telefono = item.telefono;
-          s.tipo = item.tipo;
-          s.Franquicia_idFranquicia = item.Franquicia_idFranquicia;
-          s.horarios = item.horarios;
-          s.casilleros = item.casilleros;
-          s.estacionamiento = item.estacionamiento;
-          s.energia = item.energia;
-          s.bicicletero = item.bicicletero;
+          s.idGimnasio = item.id_bodega;
+          s.nombreGym = item.nombreBodega;
+          s.direccion = item.direccion;
+          s.telefono = item.numeroTelefonico;
           s.estatus = item.estatus;
           return s;
         })

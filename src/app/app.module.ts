@@ -5,8 +5,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AltaColaboradorComponent } from './admin/alta-colaborador/alta-colaborador.component';
-import { StockComponent } from './recepcionist/stock/stock.component';
+import { LineaComponent } from './admin/timeline/timeline.component';
 import { DetalleCompraComponent } from './recepcionist/detalle-compra/detalle-compra.component';
 import { AltaUsuarioComponent } from './user/alta-usuario/alta-usuario.component';
 import { LoginComponent } from './user/login/login.component';
@@ -27,21 +26,14 @@ import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSlideToggleModule, _MatSlideToggleRequiredValidatorModule} from '@angular/material/slide-toggle';
-import { ProductosComponent } from './user/productos/productos.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { AsistenciaComponent } from './admin/asistencia/asistencia.component';
-import { EntrenamientoPiernaComponent } from './trainer/entrenamiento-pierna/entrenamiento-pierna.component';
 import { MembresiasComponent } from './recepcionist/membresias/membresias.component';
 import { CarruselComponent } from './user/carrusel/carrusel.component';
 import { AboutUsComponent } from './user/about-us/about-us.component';
-import { SolicitudComponent } from './user/solicitud/solicitud.component';
 import { SucursalComponent } from './user/sucursal/sucursal.component';
-import { UserOptionBarComponent } from './user/user-option-bar/user-option-bar.component';
-import { DetailscardComponent } from './user/detailscard/detailscard.component';
-import { WalletcardsComponent } from './user/walletcards/walletcards.component';
 import { PlanComponent } from './user/plan/plan.component';
 import { PerfilUsuarioComponent } from './user/perfil-usuario/perfil-usuario.component';
-import { EditarPerfilComponent } from './user/editar-perfil/editar-perfil.component';
+
 import { ConfirmacionComponent } from './user/confirmacion/confirmacion.component';
 import { PlanvirtualComponent } from './user/planvirtual/planvirtual.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -56,30 +48,18 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MensajeEmergentesComponent } from './user/mensaje-emergentes/mensaje-emergentes.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MensajeEmergenteEliminarComponent } from './user/mensaje-emergente-eliminar/mensaje-emergente-eliminar.component';
-import { CarritoComponent } from './recepcionist/carrito/carrito.component';
-import { SucursalInsertComponent } from './admin/sucursal-insert/sucursal-insert.component';
-import { SucursalListaComponent } from './admin/sucursal-lista/sucursal-lista.component';
-import { SucursaEditComponent } from './admin/sucursa-edit/sucursa-edit.component';
 import { HorariosComponent } from './admin/horarios/horarios.component';
-import { PerfilMiguelComponent } from './user/perfil-miguel/perfil-miguel.component';
-import { PagosMiguelComponent } from './user/pagos-miguel/pagos-miguel.component';
-import { MembresiaMiguelComponent } from './user/membresia-miguel/membresia-miguel.component';
-import { HomeMiguelComponent } from './user/home-miguel/home-miguel.component';
 import { PagoInscripcionComponent } from './user/pago-inscripcion/pago-inscripcion.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { NgxSpinnerModule } from "ngx-spinner";
-import { SucursalesAltaComponent } from './admin/sucursales-alta/sucursales-alta.component';
-import { SucursalesEditarComponent } from './admin/sucursales-editar/sucursales-editar.component';
-import { SucursalesListaComponent } from './admin/sucursales-lista/sucursales-lista.component';
 import { AltaPlanComponent } from './recepcionist/alta-plan/alta-categoria.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AltaColaboradorComponent,
-    StockComponent,
+    LineaComponent,
     DetalleCompraComponent,
     AltaUsuarioComponent,
     LoginComponent,
@@ -87,39 +67,21 @@ import { AltaPlanComponent } from './recepcionist/alta-plan/alta-categoria.compo
     SucursalesComponent,
     RecuperarPasswordComponent,
     IndexComponent,
-    ProductosComponent,
-    AsistenciaComponent,
-    EntrenamientoPiernaComponent,
     MembresiasComponent,
     CarruselComponent,
     AboutUsComponent,
-    SolicitudComponent,
     SucursalComponent,
-    UserOptionBarComponent,
-    DetailscardComponent,
-    WalletcardsComponent,
     PlanComponent,
     PerfilUsuarioComponent,
-    EditarPerfilComponent,
+    
     ConfirmacionComponent,
     PlanvirtualComponent,
     PlanListaComponent,
     PlanEditarComponent,
     MensajeEmergentesComponent,
     MensajeEmergenteEliminarComponent,
-    CarritoComponent,
-    SucursalInsertComponent,
-    SucursalListaComponent,
-    SucursaEditComponent,
     HorariosComponent,
-    PerfilMiguelComponent,
-    PagosMiguelComponent,
-    MembresiaMiguelComponent,
-    HomeMiguelComponent,
     PagoInscripcionComponent,
-    SucursalesAltaComponent,
-    SucursalesEditarComponent,
-    SucursalesListaComponent,
     AltaPlanComponent
   ],
   imports: [

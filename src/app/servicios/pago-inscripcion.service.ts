@@ -7,14 +7,14 @@ import { Observable } from 'rxjs';
 })
 export class PagoInscripcionService {
 
-  URLServices: string = "https://olympus.arvispace.com/conPrincipal/formaPago.php/"; //http://localhost/plan/registro.php/ https://olympus.arvispace.com/conPrincipal/registro.php
+  URLServices: string = "https://olympus.arvispace.com/olimpusGym/conf/registroLinea.php"; //http://localhost/plan/registro.php/ https://olympus.arvispace.com/conPrincipal/registro.php
   constructor( private http: HttpClient) { }
   
   consultarDataPago(id:any):Observable<any>{
     return this.http.get(this.URLServices+"?consultar="+id);
   }
   
-  idPagoSucursal(id:any):Observable<any>{
-    return this.http.get(this.URLServices+"?consuProcAlmac="+id);
+  idPagoSucursal(form:any):Observable<any>{
+    return this.http.post(this.URLServices+"?consuProcAlmac",form);
   }
 }

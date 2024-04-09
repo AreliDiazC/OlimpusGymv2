@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
-
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faFacebook, faGoogle, faInstagram, faTwitter, faPaypal, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faCircleUser, faCreditCard, faCheckCircle  } from '@fortawesome/free-solid-svg-icons';
@@ -12,16 +11,12 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { CarroComponent } from './carro/carro.component';
-import { HeaderMiguelComponent } from './header-miguel/header-miguel.component';
-
-
 
 @NgModule({
   declarations: [
     FooterComponent,
     HeaderComponent,
-    CarroComponent,
-    HeaderMiguelComponent
+    CarroComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +36,6 @@ import { HeaderMiguelComponent } from './header-miguel/header-miguel.component';
     MatMenuModule,
     FontAwesomeModule,
     CarroComponent,
-    HeaderMiguelComponent
   ]
 })
 export class SharedModule { 

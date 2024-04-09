@@ -8,6 +8,9 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { ToastrService } from 'ngx-toastr';
 import * as bcrypt from 'bcryptjs'; //encriptacion libreria
 import { TestService } from 'src/app/servicios/test.service';
+import { GimnasioService } from 'src/app/servicios/gimnasio.service';
+import { PlanService } from 'src/app/servicios/plan.service';
+import { OnInit } from '@angular/core';
 
 interface Food {
   value: string;
@@ -28,7 +31,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./alta-usuario.component.css'],
   
 })
-export class AltaUsuarioComponent {
+export class AltaUsuarioComponent implements OnInit {
+  currentStep: number = 1;
 
   foods: Food[] = [
     {value: 'Aguascalientes', viewValue: 'Aguascalientes'},
@@ -70,70 +74,124 @@ export class AltaUsuarioComponent {
   nameMembresia:any;
   precioId: any;
   email:any;
+  gimnasio: any;
+  membresia: any;
 
-  constructor (public fb: FormBuilder, private clienteService:ClienteService, public testService:TestService,
+  constructor (public fb: FormBuilder, private gimnasioService: GimnasioService,
+    private clienteService:ClienteService, public testService:TestService, private planService: PlanService,
     private router: Router, private activeRoute: ActivatedRoute,
     public dialog: MatDialog, private toastr: ToastrService){
 
-      this.idMembresia = this.activeRoute.snapshot.paramMap.get('id');
-      this.nameMembresia = this.activeRoute.snapshot.paramMap.get('idName');
-      this.precioId = this.activeRoute.snapshot.paramMap.get('idPrecio');
+    this.idMembresia = this.activeRoute.snapshot.paramMap.get('id');
+    this.nameMembresia = this.activeRoute.snapshot.paramMap.get('idName');
+    this.precioId = this.activeRoute.snapshot.paramMap.get('idPrecio');
       
     this.form = this.fb.group({
-      nombre: ['', Validators.compose([ Validators.required, Validators.pattern(/^[A-Za-zñÑáéíóú ]*[A-Za-z][A-Za-zñÑáéíóú ]*$/)])],
-      apPaterno: ['', Validators.compose([ Validators.required, Validators.pattern(/^[A-Za-zñÑáéíóú ]*[A-Za-z][A-Za-zñÑáéíóú ]*$/)])],
-      apMaterno: ['', Validators.compose([ Validators.required, Validators.pattern(/^[A-Za-zñÑáéíóú ]*[A-Za-z][A-Za-zñÑáéíóú ]*$/)])],
-      telefono: ['', Validators.compose([Validators.required, Validators.pattern(/^(0|[1-9][0-9]*)$/)])],
-      codigoPostal: ['', Validators.compose([Validators.pattern(/^(0|[1-9][0-9]*)$/), Validators.minLength(5)])],
-      ciudad: ['', Validators.compose([Validators.pattern(/^[A-Za-zñÑáéíóú ]*[A-Za-z][A-Za-zñÑáéíóú ]*$/)])],
-      colonia: ['', Validators.compose([Validators.pattern(/^[A-Za-zñÑáéíóú ]*[A-Za-z][A-Za-zñÑáéíóú ]*$/)])],
-      calle: ['', Validators.compose([Validators.pattern(/^[A-Za-zñÑáéíóú0-9 ]*[A-Za-z][A-Za-zñÑáéíóú0-9 ]*$/)])],
-      numInter: ['', Validators.compose([Validators.pattern(/^(0|[1-9][0-9]*)$/)])],
-      numExterno: ['', Validators.compose([Validators.pattern(/^(0|[1-9][0-9]*)$/)])],
-      estado: [''],
-      //direccion: ['', Validators.compose([ Validators.required, Validators.pattern(/^[A-Za-zñÑáéíóú0-9 ./#]*[A-Za-z][A-Za-zñÑáéíóú0-9 ./#]*$/)])],
-      fechaNacimiento: ['', Validators.required],
-      curp: ['', Validators.compose([ Validators.minLength(18), Validators.pattern(/^[A-ZÑ0-9]*[A-Z][A-ZÑ0-9]*$/)])],
       email: ['', Validators.compose([Validators.required, Validators.pattern(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)])],  
       pass: ['', Validators.compose([Validators.required, Validators.minLength(8)])],
-      tiene_huella:[''],
-      fotoUrl:[''],
-      peso:['', Validators.compose([Validators.pattern(/^(0|[1-9][0-9]*)$/), Validators.max(300)])],
-      estatura:['', Validators.compose([Validators.pattern(/^(0|[1-9][0-9]*)$/), Validators.max(250)])],
-      Gimnasio_idGimnasio:[testService.idGym],
-      Membresia_idMem:[this.idMembresia],
+      user: [''],
+      fon: ['', Validators.compose([Validators.required, Validators.pattern(/^(0|[1-9][0-9]*)$/)])],
+      nombreU: ['', Validators.compose([ Validators.required, Validators.pattern(/^[A-Za-zñÑáéíóú ]*[A-Za-z][A-Za-zñÑáéíóú ]*$/)])],
+      apPaterno: ['', Validators.compose([ Validators.required, Validators.pattern(/^[A-Za-zñÑáéíóú ]*[A-Za-z][A-Za-zñÑáéíóú ]*$/)])],
+      apMaterno: ['', Validators.compose([ Validators.required, Validators.pattern(/^[A-Za-zñÑáéíóú ]*[A-Za-z][A-Za-zñÑáéíóú ]*$/)])],
+      destino: ['Cliente'],
+      direccion: [''],
+      codigoPromotor: [0],
+      genero: [''],
+      idGym:[testService.idGym],
+      fechaNacimiento: ['', Validators.required],
+      foto: [''],
+      nombre: [''],
+      idMem:[this.idMembresia],
+      fechaInicio: [''],
+      fechaFin: ['']
     })
   }
 
+  ngOnInit(): void {
+    this.consultarGym();
+    this.consultarMem();
+  }
+
   registrar(): any {
-    this.email=this.form.value.email;
+    const nombreU = this.form.get("nombreU")?.value;
+    const apPaterno = this.form.get("apPaterno")?.value;
+    const apMaterno = this.form.get("apMaterno")?.value;
+    
+    const nombreCompleto = `${nombreU} ${apPaterno} ${apMaterno}`;
+
+
+    const fechaInicio = new Date();
+
+// Convierte la fecha en un objeto tipo 'Date' y lo formatea como una cadena ISO
+    const fechaInicioISO = fechaInicio.toISOString().split('T')[0];
+
+    this.form.patchValue({
+      nombre: nombreCompleto,
+      fechaInicio: fechaInicioISO,
+      fechaFin: fechaInicioISO,
+    });
+
+    console.log(this.form.value);
+
     if(this.form.valid){
 
-      this.clienteService.consultarEmail(this.email).subscribe((resultData) => {
-        if(resultData.msg == 'emailExist'){
-          this.toastr.warning('El correo ingresado ya existe.', 'Alerta!!!');
-          
-        }
-        if(resultData.msg == 'emailNotExist'){
-          console.log(this.form.value, "this.form.value");
-          this.clienteService.agregarCliente(this.form.value).subscribe((respuesta) => {
-            this.dialog.open(MensajeEmergentesComponent, {
-              data: `Usuario registrado exitosamente`,
-            })
-            .afterClosed()
-            .subscribe((cerrarDialogo: Boolean) => {
-              if (cerrarDialogo) {
-                this.router.navigateByUrl(`/pago-inscripcion/${this.email}`);
-              } else {
-                
-              }
-            });
-          });
-        }
+      this.clienteService.agregarCliente(this.form.value).subscribe((respuesta) => {
+        console.log(respuesta, "respuesta");
+        if(respuesta.message == "MailExists"){
+          console.log("el correo ya existe");
+          this.toastr.error('El correo electrónico ya existe.', 'Error!!!');
+        }else{
+          console.log(respuesta, "resuestaaaaaa");
+        this.dialog.open(MensajeEmergentesComponent, {
+          data: `Usuario registrado exitosamente`,
+        })
+        .afterClosed()
+        .subscribe((cerrarDialogo: Boolean) => {
+          if (cerrarDialogo) {
+            this.router.navigateByUrl(`/pago-inscripcion/${respuesta.email}`);
+          } else {
+            
+          }
+        });
+      }
       });
+      
     } else {
     // El formulario no es válido, muestra un mensaje de error
       this.message = "Por favor, complete todos los campos requeridos.";
     }
   }
+
+  consultarGym() {
+    console.log(this.testService.idGym, "this.testService.idGym");
+   
+  }
+
+  consultarMem(){
+    this.planService.consultarPlan( this.idMembresia).subscribe(
+      (respuesta) => {
+        this.membresia = respuesta;
+        this.gimnasioService.consultarPlanes(this.membresia[0].Gimnasio_idGimnasio).subscribe(
+          (respuesta) => {
+            this.gimnasio = respuesta;
+            // Aquí puedes manejar la respuesta del servicio
+            console.log(respuesta); // Ejemplo de lo que puedes hacer con la respuesta
+          },
+          (error) => {
+            // Aquí puedes manejar cualquier error que ocurra durante la consulta
+            console.error('Error al consultar los planes del gimnasio:', error);
+          }
+        );
+
+        // Aquí puedes manejar la respuesta del servicio
+        console.log(respuesta); // Ejemplo de lo que puedes hacer con la respuesta
+      },
+      (error) => {
+        // Aquí puedes manejar cualquier error que ocurra durante la consulta
+        console.error('Error al consultar los planes del gimnasio:', error);
+      }
+    );
+  }
+  
 }
