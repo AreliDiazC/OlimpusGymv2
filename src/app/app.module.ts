@@ -1,22 +1,15 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {MatSidenavModule} from '@angular/material/sidenav';
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LineaComponent } from './admin/timeline/timeline.component';
-import { DetalleCompraComponent } from './recepcionist/detalle-compra/detalle-compra.component';
 import { AltaUsuarioComponent } from './user/alta-usuario/alta-usuario.component';
-import { LoginComponent } from './user/login/login.component';
-import { FinalizarCompraComponent } from './user/finalizar-compra/finalizar-compra.component';
 import { SucursalesComponent } from './user/sucursales/sucursales.component';
-import { RecuperarPasswordComponent } from './user/recuperar-password/recuperar-password.component';
 import { IndexComponent } from './user/index/index.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedModule } from './shared/shared.module';
-
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -28,19 +21,13 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatSlideToggleModule, _MatSlideToggleRequiredValidatorModule} from '@angular/material/slide-toggle';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MembresiasComponent } from './recepcionist/membresias/membresias.component';
-import { CarruselComponent } from './user/carrusel/carrusel.component';
 import { AboutUsComponent } from './user/about-us/about-us.component';
 import { SucursalComponent } from './user/sucursal/sucursal.component';
-import { PlanComponent } from './user/plan/plan.component';
-import { PerfilUsuarioComponent } from './user/perfil-usuario/perfil-usuario.component';
-
 import { ConfirmacionComponent } from './user/confirmacion/confirmacion.component';
 import { PlanvirtualComponent } from './user/planvirtual/planvirtual.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
-import { PlanListaComponent } from './user/plan-lista/plan-lista.component';
 import { MatTableModule } from '@angular/material/table';
-import { PlanEditarComponent } from './user/plan-editar/plan-editar.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatRadioModule } from '@angular/material/radio';
@@ -60,24 +47,14 @@ import { AltaPlanComponent } from './recepcionist/alta-plan/alta-categoria.compo
   declarations: [
     AppComponent,
     LineaComponent,
-    DetalleCompraComponent,
     AltaUsuarioComponent,
-    LoginComponent,
-    FinalizarCompraComponent,
     SucursalesComponent,
-    RecuperarPasswordComponent,
     IndexComponent,
     MembresiasComponent,
-    CarruselComponent,
     AboutUsComponent,
     SucursalComponent,
-    PlanComponent,
-    PerfilUsuarioComponent,
-    
     ConfirmacionComponent,
     PlanvirtualComponent,
-    PlanListaComponent,
-    PlanEditarComponent,
     MensajeEmergentesComponent,
     MensajeEmergenteEliminarComponent,
     HorariosComponent,

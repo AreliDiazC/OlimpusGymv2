@@ -8,24 +8,10 @@ import { sucursal } from './sucursal';
   providedIn: 'root'
 })
 export class ConnectionService {
-  Api: String = 'http://localhost/olimpus-gym/';
   Api_server: String = 'https://olympus.arvispace.com/olimpusGym/conf/mem.php';
 
   constructor(private http: HttpClient){}
 
-  //metodo alta colaborador - admin - insertar nuevo empleado
-  agregarEmpleado(datos: empleado):Observable<any>{
-    let headers: any = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
-    return this.http.post(this.Api+"?addEmpleado", datos, {headers});
-  }
-
-  //metodo consultar sucursales gym - usado en alta colaborador - admin
-  formAltaPersonal():Observable<any>{
-    let headers: any = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
-    return this.http.get(this.Api+"?nombreGym");
-  }
-  
-  //metodo traer datos filtrados - sucursales 
   filtrarMem(filtros: filtroSucursales):Observable<any> {
     let headers: any = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
     return this.http.post(this.Api_server+"?fm=1", filtros, {headers});
@@ -52,11 +38,6 @@ export class ConnectionService {
           s.tipo = item.tipo;
           s.Franquicia_idFranquicia = item.Franquicia_idFranquicia;
           s.horarios = item.horarios;
-          s.casilleros = item.casilleros;
-          s.estacionamiento = item.estacionamiento;
-          s.energia = item.energia;
-          s.bicicletero = item.bicicletero
-          
           return s;
         })
       )

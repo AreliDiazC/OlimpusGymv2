@@ -25,11 +25,11 @@ export class IndexComponent implements OnInit{
     this.plan=respuesta;
     });
 
-    this.planService.obtenerProducts().subscribe(respuesta=>{
+   /* this.planService.obtenerProducts().subscribe(respuesta=>{
     
       this.products=respuesta;
       this.mostrarProducts();
-    })
+    })*/
   }
 
   navegarPagina(url: String): void {
