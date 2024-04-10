@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class PagoInscripcionService {
 
-  URLServices: string = "https://olympus.arvispace.com/olimpusGym/conf/registroLinea.php"; //http://localhost/plan/registro.php/ https://olympus.arvispace.com/conPrincipal/registro.php
+  URLServices: string = "https://olympus.arvispace.com/olimpusGym/conf/registroLinea.php";
   constructor( private http: HttpClient) { }
   
   consultarDataPago(id:any):Observable<any>{

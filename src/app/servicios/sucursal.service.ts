@@ -16,7 +16,6 @@ export class SucursalService {
     return this.http.get(this.API).pipe(
       map((data: any) =>
         data.map((item: any) => {
-          console.log(data, "data");
           const s = new sucursal();
           s.idGimnasio = item.id_bodega;
           s.nombreGym = item.nombreBodega;
